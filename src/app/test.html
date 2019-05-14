@@ -1,0 +1,39 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>测试JS回调</title>
+    <script>
+        function onTimeOut() {
+            let pInfo = document.querySelector('#info');
+            pInfo.innerHTML = '系统超时';
+        }
+
+        function init() {
+            let btn = document.querySelector('#btn1');
+            if (btn != null) {
+                console.log(btn);
+            }
+
+            btn.addEventListener('click', function () {
+                let pInfo = document.querySelector('#info');
+                pInfo.innerHTML = '点击了一下按钮';
+
+                setTimeout(onTimeOut, 3000);
+            });
+        }
+        window.onload = init;
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css">
+    <script src="main.js"></script>
+</head>
+
+<body>
+
+
+</body>
+
+</html>

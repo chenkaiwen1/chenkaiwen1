@@ -1,0 +1,80 @@
+<div class="row">
+  <div class="col-md-4"></div>
+  <div class="col-md-4">
+    <p>{{auth.isLoggedIn()?'已登陆':'未登陆'}}</p>
+
+
+
+
+
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value)">
+      <h3>表单演示： 登录</h3>
+      <div *ngIf="!myForm.valid" class="alert alert-danger">
+        <strong>错误！</strong>表单无效
+      </div>
+
+
+      <div class="form-group">
+        <label for="usernameInput">用户名</label>
+        <div *ngIf="username.hasError('required')" class="alert alert-danger">
+          <strong>错误！</strong>用户名必填</div>
+        <input type="text" id="usernameInput" class="form-control"
+          [ngClass]="{'is-invalid':username.hasError('required')}" placeholder="输入用户名" name="username"
+          [formControl]="username">
+      </div>
+
+
+
+      <div class="form-group">
+        <label for="passwordInput">密码</label>
+        <div *ngIf="password.hasError('required')" class="alert alert-danger">
+          <strong>密码必填</strong></div>
+        <input type="password" class="form-control " [ngClass]="{'is-invalid':password.hasError('required')}"
+          id="passwordInput" placeholder="输入密码" name="password" [formControl]="password">
+      </div>
+
+
+
+      <div class="form-group">
+        <label for="pinInput">验证码</label>
+        <div *ngIf="!pin.valid" class="alert alert-danger">
+          <strong>验证码无效</strong></div>
+        <div *ngIf="pin.invalid && (pin.errors.min || pin.errors.max)" class="alert alert-warning">
+          <strong>验证码长度为4位</strong></div>
+        <input type="number" class="form-control" id="pinInput" placeholder="输入验证码" name="pinnumber"
+          [formControl]="pin">
+      </div>
+
+
+
+      <div class="form-group">
+        <label for="phonenumberInput">电话号码</label>
+        <div *ngIf="!phonenumber.valid" class="alert alert-warning">
+          <strong>电话号码无效</strong></div>
+        <div *ngIf="phonenumber.invalid && (phonenumber.errors.minlength || phonenumber.errors.maxlength)"
+          class="alert alert-dark">
+          <strong>电话号码长度为11位</strong></div>
+        <div *ngIf="phonenumber.invalid && phonenumber.errors.invalidPhonenumber" class="alert alert-dark">
+          <strong>电话号码必须以131开头</strong></div>
+        <input type="text" class="form-control" id="phonenumberInput" placeholder="输入电话号码" name="phonenumber"
+          [formControl]="phonenumber">
+      </div>
+
+
+
+
+
+
+
+      <div class="form-check">
+        <label class="form-check-label">
+          <input class="form-check-input" type="checkbox"> Remember me
+        </label>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+
+  </div>
+  <div class="col-md-4"></div>
+</div>
